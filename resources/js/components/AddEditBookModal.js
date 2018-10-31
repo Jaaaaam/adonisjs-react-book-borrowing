@@ -12,7 +12,7 @@ class AddEditBookModal extends Component {
                 author: ''
             }
         }
-
+        console.log(this.props, 'prooooooooooooooooooooooooooooops')
         this.handleInputChange = this.handleInputChange.bind(this)
     }
 
@@ -49,7 +49,7 @@ class AddEditBookModal extends Component {
 
     getFormData() {
         console.log(this.props.buttonClicked, 'this.props.buttonClicked', this.props.buttonClicked == 'add')
-        
+
         if (this.props.buttonClicked == 'add') return
 
         let newForm = {
@@ -68,7 +68,7 @@ class AddEditBookModal extends Component {
         console.log('this.propsssssss', this.props)
         return(
             <div>
-                <Modal 
+                <Modal
                 isOpen={this.props.isModalShown}
                 toggle={this.props.toggle}
                 onOpened={this.getFormData.bind(this)}>
@@ -77,12 +77,12 @@ class AddEditBookModal extends Component {
                     </ModalHeader>
                     <ModalBody>
                         <strong>Title   </strong>
-                        <input 
+                        <input
                         name="title"
                         value={this.state.form.title }
                         className="form-control" onChange={this.handleInputChange}></input>
                         <strong>Author</strong>
-                        <input 
+                        <input
                         name="author"
                         value={this.state.form.author }
                         className="form-control"
@@ -91,13 +91,13 @@ class AddEditBookModal extends Component {
                         <strong>Description</strong>
                         <textarea
                         name="description"
-                        value={this.state.form.description } 
+                        value={this.state.form.description }
                         className="form-control"
                         onChange={this.handleInputChange}
                         />
                     </ModalBody>
                     <ModalFooter>
-                    <button className="btn btn-info">Save</button>
+                    <button className="btn btn-info" onClick={this.addBook.bind(this)}>Save</button>
                     <button className="btn btn-warning" onClick={this.props.toggle}>Close</button>
                     </ModalFooter>
                 </Modal>
