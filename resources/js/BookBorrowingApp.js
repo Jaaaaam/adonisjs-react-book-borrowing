@@ -36,10 +36,13 @@ class BookBorrowingApp extends Component {
     }
 
     addBook(book) {
-        let books = {...this.state.books}
+        let books = [...this.state.books]
+        book.id = books.length+1
         books.push(book)
         this.setState({
             books
+        }, () => {
+          console.log(this.state, 'STATE')
         })
     }
 
