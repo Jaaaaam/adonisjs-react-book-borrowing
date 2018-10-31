@@ -11,7 +11,7 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.react('./resources/js/App.js', 'dist/js')
+mix.react('./resources/js/index.js', 'dist/js')
 .setPublicPath('public')
 
 // Full API
