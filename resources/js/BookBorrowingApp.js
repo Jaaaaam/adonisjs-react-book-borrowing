@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import axios from 'axios'
 import BookList from './components/BookList'
 import ViewModal from './components/BookViewModal'
 import AddEditModal from './components/AddEditBookModal'
@@ -8,31 +9,21 @@ class BookBorrowingApp extends Component {
         super()
 
         this.state = {
-            books: [
-                {
-                    id: 1,
-                    title: 'A Walk to Remember',
-                    author: 'Mitch Albom',
-                    description: 'Vestibulum consectetur eros ut rutrum dignissim. Maecenas tincidunt lobortis libero tristique faucibus. Integer sagittis enim tincidunt sollicitudin mattis. Vivamus id dictum mi. Curabitur a metus purus. Mauris et sapien sem. Duis fermentum justo quis metus congue facilisis.',
-                    date_borrowed: '',
-                    date_returned: '',
-                    borrowed_by: ''
-                },
-                {
-                    id:2,
-                    title: 'Falling Into Place',
-                    description: 'Curae; Praesent nunc tortor, malesuada sed aliquet in, iaculis id nisi. Maecenas viverra erat ac condimentum tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;',
-                    author: 'Amy Zhang',
-                    date_borrowed: '',
-                    date_returned: '',
-                    borrowed_by: ''
-                }
-            ],
+            books: [],
             activeBook: {},
             isViewModalShown: false,
             isAddEditModalShown: false,
             buttonClicked: ''
         }
+    }
+
+    componentDidMount() {
+        axios.get('/book-list').then((res)=> {
+            console.log(res.data,'DATA!!!')
+            this.setState({
+                books: res.data
+            })
+        })
     }
 
     addBook(book) {
